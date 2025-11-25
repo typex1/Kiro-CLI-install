@@ -1,6 +1,14 @@
 #!/bin/bash
 set -e
 
+if ! command -v git &> /dev/null; then
+    if command -v apt-get &> /dev/null; then
+        sudo apt-get update && sudo apt-get install -y git
+    elif command -v yum &> /dev/null; then
+        sudo yum install -y git
+    fi
+fi
+
 INSTALL_DIR="$HOME/.kiro-install-tmp"
 mkdir -p "$INSTALL_DIR"
 
